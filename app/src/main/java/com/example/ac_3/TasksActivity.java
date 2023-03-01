@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -23,7 +24,10 @@ public class TasksActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasks);
 
+        Intent previous = getIntent();
 
+        String name = previous.getStringExtra("name");
+        String date = previous.getStringExtra("date");
 
         taskManager = findViewById(R.id.taskManager);
 
@@ -33,11 +37,8 @@ public class TasksActivity extends AppCompatActivity {
         taskManager.setAdapter(adapter);
         taskManager.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
-        createList();
-    }
-
-    private void createList() {
-        Task task = new Task("something", "sometime");
+        Task task = new Task(name, date);
         taskList.add(task);
+
     }
 }
