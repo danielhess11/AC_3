@@ -23,15 +23,17 @@ public class CreateTaskActivity extends AppCompatActivity {
         saveTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String name = taskName.getText().toString();
+                String date = taskDate.getText().toString();
 
-                String taskNameS = taskName.getText().toString();
-                String taskDateS = taskDate.getText().toString();
-
-                Intent next = new Intent(CreateTaskActivity.this, TasksActivity.class);
-                next.putExtra("name", taskNameS);
-                next.putExtra("date", taskDateS);
-                startActivity(next);
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("name", name);
+                resultIntent.putExtra("date", date);
+                setResult(RESULT_OK, resultIntent);
+                finish();
             }
         });
     }
+
+
 }
